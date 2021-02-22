@@ -13,4 +13,11 @@ Image:
     tags:
         - embedded
     script:
-        - ls -la
+        - cd buildroot
+        - make BR2_EXTERNAL=../ somlabs_visionsom_imx6ull_defconfig
+        - make -j 4
+    artifacts:
+        paths:
+            - buildroot/output/images/sdcard.img
+        expire_in: 2 hrs
+
