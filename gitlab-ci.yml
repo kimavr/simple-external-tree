@@ -1,0 +1,16 @@
+variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+    GIT_STRATEGY: clone
+    GIT_DEPTH: 0
+
+stages:
+    - Build
+    
+Image:
+    stage: Build
+    only:
+        - push
+    tags:
+        - embedded
+    script:
+        - ls -la
