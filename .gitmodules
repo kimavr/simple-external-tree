@@ -1,3 +1,6 @@
 [submodule "buildroot"]
 	path = buildroot
 	url = http://192.168.5.134/embedded-linux/buildroot.git
+[submodule "downloads/buildroot-packages"]
+	path = downloads/buildroot-packages
+	url = http://192.168.5.134/embedded-linux/buildroot-packages.git
