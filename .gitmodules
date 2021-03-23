@@ -7,3 +7,6 @@
 [submodule "downloads/linux"]
 	path = downloads/linux
 	url = http://192.168.5.134/embedded-linux/linux-archived.git
+[submodule "downloads/uboot"]
+	path = downloads/uboot
+	url = http://192.168.5.134/embedded-linux/uboot-archived.git
