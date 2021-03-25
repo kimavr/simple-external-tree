@@ -8,10 +8,6 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: Install packages
-        run: |
-          sudo apt-get -y install wget rsync cpio gzip bzip2 tar unzip make gcc g++ libncurses5-dev build-essential
-          
       - name: Clone repository
         uses: actions/checkout@v2
 
