@@ -1,6 +1,6 @@
 [submodule "buildroot"]
 	path = buildroot
-	url = ../../embedded-linux/buildroot.git
+	url = ../buildroot.git
 [submodule "downloads/buildroot-packages"]
 	path = downloads/buildroot-packages
-	url = ../../embedded-linux/buildroot-packages.git
+	url = ../buildroot-packages.git
