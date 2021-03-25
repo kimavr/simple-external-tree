@@ -1,36 +1,32 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the imx branch
-  push:
-    branches: [ imx ]
-  pull_request:
-    branches: [ imx ]
+on: [push]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    name: Build image
+    runs-on: ubuntu-20.04
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Install packages
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          sudo apt-get -y install wget rsync cpio gzip bzip2 tar unzip make gcc g++ libncurses5-dev build-essential
+          
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Update submodules
+        run: git submodule update --init
+        
+      - name: Compile
+        run: |
+          cd ./buildroot
+          make BR2_EXTERNAL=../ somlabs_visionsom_imx6ull_defconfig
+          make
+          
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: sdcard.img
+          path: buildroot/output/images/sdcard.img
+       
